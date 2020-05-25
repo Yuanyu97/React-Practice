@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import styled from 'styled-components';
 import classes from './App.css';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Person from './Person/Person';
 
 // const StyledButton = styled.button`
@@ -87,11 +86,12 @@ class App extends Component {
       people = (
         <div>
           {this.state.people.map((person, index) => {
-            return <ErrorBoundary key={person.id}><Person
+            return <Person
               click={() => this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
-              changed={(event) => this.nameChangedHandler(event, person.id)} /></ ErrorBoundary> //IMPT when rendering a list of data
+              key={person.id}
+              changed={(event) => this.nameChangedHandler(event, person.id)} /> //IMPT when rendering a list of data
           })}
         </div>
       );
