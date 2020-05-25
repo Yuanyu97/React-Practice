@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 // import styled from 'styled-components';
 import classes from './App.css';
-
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Person from './Person/Person';
 
 // const StyledButton = styled.button`
-  // background-color: ${props => props.alt ? 'red' : 'green'};
-  // color: white;
-  // font: inherit;
-  // border: 1px solid blue;
-  // padding: 8px;
-  // cursor: pointer;
+// background-color: ${props => props.alt ? 'red' : 'green'};
+// color: white;
+// font: inherit;
+// border: 1px solid blue;
+// padding: 8px;
+// cursor: pointer;
 
-  // &:hover {
-  //   background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-  //   color: black;
+// &:hover {
+//   background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+//   color: black;
 //   }`;
 
 class App extends Component {
@@ -87,12 +87,11 @@ class App extends Component {
       people = (
         <div>
           {this.state.people.map((person, index) => {
-            return <Person
+            return <ErrorBoundary key={person.id}><Person
               click={() => this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
-              key={person.id}
-              changed={(event) => this.nameChangedHandler(event, person.id)} /> //IMPT when rendering a list of data
+              changed={(event) => this.nameChangedHandler(event, person.id)} /></ ErrorBoundary> //IMPT when rendering a list of data
           })}
         </div>
       );
